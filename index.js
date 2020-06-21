@@ -47,7 +47,7 @@ app.post('/', async(req, res) => {
         if(response) {
             return res.send({response});
         } else {
-            return res.status(500).send({message: 'Server Error');
+            return res.status(500).send({message: 'Server Error'});
         }
         
     } catch (error) {
