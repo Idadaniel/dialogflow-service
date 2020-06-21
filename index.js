@@ -26,9 +26,13 @@ async function detectIntent(text) {
  
  try {
     const responses = await sessionClient.detectIntent(request);
+    console.log(responses);
+    
     const result = responses[0].queryResult;
     return result.fulfillmentText;
  } catch (error) {
+     console.log(error, '======');
+     
      return null;
  }
  
@@ -43,7 +47,7 @@ app.post('/', async(req, res) => {
         if(response) {
             return res.send({response});
         } else {
-            return res.status(500).send({message: 'Server Error', error: error.stack});
+            return res.status(500).send({message: 'Server Error');
         }
         
     } catch (error) {
