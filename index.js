@@ -1,8 +1,10 @@
 const express = require('express');
 const dialogflow = require('@google-cloud/dialogflow');
 const uuid = require('uuid');
-
+const cors = require('cors');
 const app = express();
+
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -26,12 +28,10 @@ async function detectIntent(text) {
  
  try {
     const responses = await sessionClient.detectIntent(request);
-    console.log(responses);
     
     const result = responses[0].queryResult;
     return result.fulfillmentText;
  } catch (error) {
-     console.log(error, '======');
      
      return null;
  }
